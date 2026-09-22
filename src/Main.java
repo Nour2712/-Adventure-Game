@@ -1,4 +1,5 @@
 void main() {
+    Adventure adventure = new Adventure(); //kalder konstruktøren i vores Adventure-klasse.
     boolean playing = true;
 
     while (playing) {
@@ -10,8 +11,7 @@ void main() {
                 playing = false;
             }
             case "look" -> {
-                // TODO: skal senere vise beskrivelse af rummet
-                IO.println("looking around");
+                IO.println(adventure.look()); //kalder look metoden fra vores adventure klasse
             }
             case "help" -> {
                 // TODO: skal senere vise en liste over kommandoer
