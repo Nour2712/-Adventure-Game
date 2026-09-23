@@ -7,13 +7,13 @@ public class Adventure {
         Room room1 = new Room("Room 1", "A plain room with only two doors ");
         Room room2 = new Room("Room 2", "An ordinary room with two doors ");
         Room room3 = new Room("Room 3", "A quiet room in the corner");
-        Room room4 = new Room("Room 4", "A small room with three doors");
-        Room room5 = new Room("Room 5", "The middle room. It only has one door");
+        Room room4 = new Room("Room 4", "A small room with two doors");
+        Room room5 = new Room("Room 5", "You found the hidden room");
         Room room6 = new Room("Room 6", "A room with three doors");
         Room room7 = new Room("Room 7", "A room in the corner with two doors");
         Room room8 = new Room("Room 8", "A room with three doors");
         Room room9 = new Room("Room 9", "The last room, with two doors");
-        currentRoom = room1;
+
 
         // East/West forbindelser
         room1.setEast(room2);
@@ -53,10 +53,52 @@ public class Adventure {
         room6.setSouth(room9);
         room9.setNorth(room6);
 
+        currentRoom = room1;
     }
 
 
     public String look() {
         return currentRoom.getName() + "\n" + currentRoom.getDescription();
     }
-}
+
+    //Naviger tilbage
+    public Room getCurrentRoom() {
+        return currentRoom;
+
+    }
+
+    public boolean goNorth() {
+        if (currentRoom.getNorth() != null) {
+            currentRoom = currentRoom.getNorth();
+            return true;
+        }
+        return false;
+
+    }
+        public boolean goEast () {
+            if (currentRoom.getEast() != null) {
+                currentRoom = currentRoom.getEast();
+                return true;
+            }
+            return false;
+        }
+
+    public boolean goWest () {
+        if (currentRoom.getWest() != null) {
+            currentRoom = currentRoom.getWest();
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean goSouth () {
+        if (currentRoom.getSouth() != null) {
+            currentRoom = currentRoom.getSouth();
+            return true;
+        }
+        return false;
+    }
+
+
+    }
