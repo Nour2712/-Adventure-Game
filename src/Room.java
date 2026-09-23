@@ -1,6 +1,4 @@
 public class Room {
-
-    //opretter felter:
     private String name;
     private String description;
     private Room north;
@@ -8,14 +6,14 @@ public class Room {
     private Room south;
     private Room west;
 
-    // Konstruktør: opretter et rum med navn og beskrivelse: (naboerne er ikke med her, ved jeg ikke hvorfor faktsik? )
-    public Room (String name, String description){
-    this.name = name;
-    this.description = description;
+    public Room(String name, String description){
+        this.name = name;
+        this.description = description;
+        //Javas standardværdi for objekter er automatisk 'null',
+        //så alle fire retninger starter med at være tomme.
     }
 
-    // Getters:
-    public String getName() {
+    public String getName(){
         return name;
     }
 
@@ -23,38 +21,40 @@ public class Room {
         return description;
     }
 
-    public Room getNorth() {
+    //North
+    public void setNorth(Room room){
+        this.north = room;
+    }
+
+    public Room getNorth(){
         return north;
     }
 
-    public Room getEast() {
-        return east;
+    //South
+    public void setSouth(Room room){
+        this.south = room;
     }
 
-    public Room getSouth() {
+    public Room getSouth(){
         return south;
     }
 
-    public Room getWest() {
+    //East
+    public void setEast(Room room){
+        this.east = room;
+    }
+
+    public Room getEast(){
+        return east;
+    }
+
+    //West
+    public void setWest(Room room){
+        this.west = room;
+    }
+
+    public Room getWest(){
         return west;
     }
 
-
-    // Setters: bruges til at SÆTTE/ændre værdier (i det her tilfælde bruger vi det til at forbinde rum til hina
-
-    public void setNorth(Room north) {
-        this.north = north;
-    }
-
-    public void setEast(Room east) {
-        this.east = east;
-    }
-
-    public void setSouth(Room south) {
-        this.south = south;
-    }
-
-    public void setWest(Room west) {
-        this.west = west;
-    }
 }
