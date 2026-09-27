@@ -85,4 +85,15 @@ public class Room {
         return items;
     }
 
+    // Leder efter en ting i rummet ud fra dens korte navn.
+    // Returnerer tingen, hvis den findes, ellers null.
+    public Item findItem(String shortName) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getShortName().equals(shortName)) {
+                return items.get(i);
+            }
+        }
+        return null;
+    }
+
 }
