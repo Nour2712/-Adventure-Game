@@ -7,6 +7,10 @@ public class Player {
     private Room currentRoom;
 
 
+    // Spillerens inventory: de ting, spilleren bærer rundt på.
+    private ArrayList<Item> inventory = new ArrayList<>();
+
+
     // Konstruktør: spilleren får sit startrum med, når den bliver oprettet.
     // Player ved ikke selv, hvilket rum der er startrummet - det bestemmer Map
     public Player(Room startRoom) {
@@ -68,4 +72,17 @@ public class Player {
         }
         return false;
     }
+
+    // Tager en ting fra rummet og lægger den i spillerens inventory.
+    // Returnerer tingen, hvis den fandtes, ellers null.
+    public Item takeItem(String shortName) {
+        Item item = currentRoom.findItem(shortName);
+
+        if (item != null) {
+            currentRoom.removeItem(item);
+            inventory.add(item);
+        }
+        return item;
+    }
+
 }
