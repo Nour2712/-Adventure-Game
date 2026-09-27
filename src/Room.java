@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Room {
 
     //opretter felter:
@@ -8,10 +10,17 @@ public class Room {
     private Room south;
     private Room west;
 
-    // Konstruktør: opretter et rum med navn og beskrivelse: (naboerne er ikke med her, ved jeg ikke hvorfor faktsik? )
-    public Room (String name, String description){
-    this.name = name;
-    this.description = description;
+    // Listen over de ting, der ligger i rummet.
+    // Den oprettes tom med det samme, så den aldrig er null.
+    private ArrayList<Item> items = new ArrayList<>();
+
+
+    // Konstruktør: opretter et rum med navn og beskrivelse.
+    // Naboerne er ikke med her, fordi alle rum skal findes, før man kan forbinde dem.
+    // Derfor forbindes de bagefter med setters (i Map).
+    public Room(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     // Getters:
@@ -19,7 +28,7 @@ public class Room {
         return name;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
@@ -57,4 +66,23 @@ public class Room {
     public void setWest(Room west) {
         this.west = west;
     }
+
+
+    // ----- Items -----
+    //tilføjer addItem metoden - Lægger en ting i rummet.
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    //tilføjer removeItem metoden
+    // fjerner en ting fra rummet:
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
+    //tilføjer geItems metoden - Returnerer listen over alle ting i rummet.
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
 }
