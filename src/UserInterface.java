@@ -55,6 +55,7 @@ public class UserInterface { // Userinterface står for al kommunikation med bru
                     IO.println("take <item> = pick up an item, for example 'take lamp'");
                     IO.println("inventory (or inv) = show what you are carrying");
                     IO.println("exit = quit the game ");
+                    IO.println("drop <item> = leave an item in the room, for example 'drop lamp'");
                 }
 
                 // Her oversættes både "n" og "north" til goNorth()
@@ -103,11 +104,23 @@ public class UserInterface { // Userinterface står for al kommunikation med bru
                         } else {
                             IO.println("There is nothing like " + itemName + " to take around here");
                         }
+                    } else if (kommando.startsWith("drop ")) {
+                    String itemName = kommando.substring(5);
+                    Item item = adventure.dropItem(itemName);
+
+                    if (item != null) {
+                        IO.println("You have dropped " + item.getLongName());
+                    } else {
+                        IO.println("You don't have anything like " + itemName + " in your inventory");
                     }
+                }
+            }
+
+
                 }
             }
         }
     }
-}
+
 
 

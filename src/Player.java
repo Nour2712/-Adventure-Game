@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Player {
 
+
     // Det rum spilleren står i lige nu
     // Feltet er private, så kun Player selv kan ændre det (indkapsling).
     private Room currentRoom;
@@ -90,5 +91,30 @@ public class Player {
         return inventory;
 
     }
+
+    // Leder efter en ting i spillerens inventory ud fra dens korte navn.
+    // Returnerer tingen, hvis den findes, ellers null
+    public Item findItem(String shortName) {
+        for (Item item : inventory) {
+            if (item.getShortName().equals(shortName)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    // Tager en ting fra spillerens inventory og lægger den i rummet.
+    // Returnerer tingen, hvis den fandtes, ellers null.
+    public Item dropItem(String shortName) {
+        Item item = findItem(shortName);
+
+        if (item != null) {
+            inventory.remove(item);
+            currentRoom.addItem(item);
+        }
+        return item;
+    }
+
+
 
 }

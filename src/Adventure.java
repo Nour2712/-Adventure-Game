@@ -41,6 +41,12 @@ public class Adventure {
         return player.takeItem(shortName);
     }
 
+    // Beder spilleren om at lægge en ting og sender svaret videre.
+    public Item dropItem(String shortName) {
+        return player.dropItem(shortName);
+    }
+
+    // Beder spilleren om sin inventory-liste og sender den videre.
     public ArrayList<Item> getInventory() {
         return player.getInventory();
 
