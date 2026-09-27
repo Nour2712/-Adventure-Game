@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class UserInterface { // Userinterface står for al kommunikation med brugeren.
 
     // Userinterface kender kun Adventure (controlleren) - ikke Player, Map eller Room (lav kobling)
@@ -33,11 +35,25 @@ public class UserInterface { // Userinterface står for al kommunikation med bru
                     IO.println(adventure.look());//kalder look metoden fra vores adventure klasse
                 }
 
+                case "inventory", "inv", "invent" -> {
+                    ArrayList<Item> inventory = adventure.getInventory();
+
+                    if (inventory.size() == 0) {
+                        IO.println("You are not carrying anything");
+                    } else {
+                        IO.println("You are carrying:");
+                        for (int i = 0; i < inventory.size(); i++) {
+                            IO.println("- " + inventory.get(i).getLongName());
+                        }
+                    }
+                }
+
                 case "help" -> {
                     IO.println("To move in a direction you have 4 options:");
                     IO.println("n or north" + ", e or east" + ", s or south" + ", w or west");
                     IO.println("look = information about your current whereabouts");
                     IO.println("take <item> = pick up an item, for example 'take lamp'");
+                    IO.println("inventory (or inv) = show what you are carrying");
                     IO.println("exit = quit the game ");
                 }
 

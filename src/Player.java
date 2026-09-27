@@ -85,4 +85,10 @@ public class Player {
         return item;
     }
 
+    // Returnerer listen over de ting, spilleren bærer på.
+    public ArrayList<Item> getInventory() {
+        return inventory;
+
+    }
+
 }

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 // Adventure er controlleren: den starter spillet og sender beskeder videre
 // fra Userinterface til Player. Den er "single point of entry" for Userinterface.
 public class Adventure {
@@ -39,5 +41,10 @@ public class Adventure {
         return player.takeItem(shortName);
     }
 
+    public ArrayList<Item> getInventory() {
+        return player.getInventory();
+
+    }
 
 }
+
