@@ -33,4 +33,11 @@ public class Adventure {
     public boolean goWest() {
         return player.goWest();
     }
+
+    // Beder spilleren om at tage en ting og sender svaret videre.
+    public Item takeItem(String shortName) {
+        return player.takeItem(shortName);
+    }
+
+
 }

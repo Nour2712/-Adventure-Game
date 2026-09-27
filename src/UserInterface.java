@@ -37,6 +37,7 @@ public class UserInterface { // Userinterface står for al kommunikation med bru
                     IO.println("To move in a direction you have 4 options:");
                     IO.println("n or north" + ", e or east" + ", s or south" + ", w or west");
                     IO.println("look = information about your current whereabouts");
+                    IO.println("take <item> = pick up an item, for example 'take lamp'");
                     IO.println("exit = quit the game ");
                 }
 
@@ -73,6 +74,21 @@ public class UserInterface { // Userinterface står for al kommunikation med bru
                     }
                 }
 
+                // "take" kan ikke være en almindelig case, fordi teksten er forskellig
+                // hver gang (take lamp, take sword...). Derfor tjekker vi med startsWith,
+                // og substring(5) klipper "take " af, så vi har navnet på tingen tilbage.
+                default -> {
+                    if (kommando.startsWith("take ")) {
+                        String itemName = kommando.substring(5);
+                        Item item = adventure.takeItem(itemName);
+
+                        if (item != null) {
+                            IO.println("You have taken " + item.getLongName());
+                        } else {
+                            IO.println("There is nothing like " + itemName + " to take around here");
+                        }
+                    }
+                }
             }
         }
     }
