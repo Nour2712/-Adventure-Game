@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Player {
 
     // Det rum spilleren står i lige nu
@@ -12,9 +14,20 @@ public class Player {
     }
 
 
-    // Returnerer navn og beskrivelse af det rum spilleren står i.
+    // Returnerer navn og beskrivelse af rummet, plus de ting/ items der ligger i det.
     public String look() {
-        return currentRoom.getName() + "\n" + currentRoom.getDescription();
+        String text = currentRoom.getName() + "\n" + currentRoom.getDescription();
+        ArrayList<Item> items = currentRoom.getItems();
+        if (items.size() == 0) {
+            text = text + "\nThere is nothing here.";
+
+        } else {
+            text = text + "\nHere you see:";
+            for (int i = 0; i < items.size(); i++) {
+                text = text + "\n- " + items.get(i).getLongName();
+            }
+        }
+        return text;
     }
 
 
