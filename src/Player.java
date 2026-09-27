@@ -1,8 +1,15 @@
+import java.util.ArrayList;
+
 public class Player {
+
 
     // Det rum spilleren står i lige nu
     // Feltet er private, så kun Player selv kan ændre det (indkapsling).
     private Room currentRoom;
+
+
+    // Spillerens inventory: de ting, spilleren bærer rundt på.
+    private ArrayList<Item> inventory = new ArrayList<>();
 
 
     // Konstruktør: spilleren får sit startrum med, når den bliver oprettet.
@@ -12,9 +19,20 @@ public class Player {
     }
 
 
-    // Returnerer navn og beskrivelse af det rum spilleren står i.
+    // Returnerer navn og beskrivelse af rummet, plus de ting/ items der ligger i det.
     public String look() {
-        return currentRoom.getName() + "\n" + currentRoom.getDescription();
+        String text = currentRoom.getName() + "\n" + currentRoom.getDescription();
+        ArrayList<Item> items = currentRoom.getItems();
+        if (items.size() == 0) {
+            text = text + "\nThere is nothing here.";
+
+        } else {
+            text = text + "\nHere you see:";
+            for (int i = 0; i < items.size(); i++) {
+                text = text + "\n- " + items.get(i).getLongName();
+            }
+        }
+        return text;
     }
 
 
@@ -55,4 +73,48 @@ public class Player {
         }
         return false;
     }
+
+    // Tager en ting fra rummet og lægger den i spillerens inventory.
+    // Returnerer tingen, hvis den fandtes, ellers null.
+    public Item takeItem(String shortName) {
+        Item item = currentRoom.findItem(shortName);
+
+        if (item != null) {
+            currentRoom.removeItem(item);
+            inventory.add(item);
+        }
+        return item;
+    }
+
+    // Returnerer listen over de ting, spilleren bærer på.
+    public ArrayList<Item> getInventory() {
+        return inventory;
+
+    }
+
+    // Leder efter en ting i spillerens inventory ud fra dens korte navn.
+    // Returnerer tingen, hvis den findes, ellers null
+    public Item findItem(String shortName) {
+        for (Item item : inventory) {
+            if (item.getShortName().equals(shortName)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    // Tager en ting fra spillerens inventory og lægger den i rummet.
+    // Returnerer tingen, hvis den fandtes, ellers null.
+    public Item dropItem(String shortName) {
+        Item item = findItem(shortName);
+
+        if (item != null) {
+            inventory.remove(item);
+            currentRoom.addItem(item);
+        }
+        return item;
+    }
+
+
+
 }

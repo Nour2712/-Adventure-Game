@@ -3,7 +3,7 @@ public class Map {  // Single Responsibility Principle: klassen har kun ét ansv
     // Det rum spilleren starter i.
     private Room startRoom;
 
-    // Konstruktør: opretter de 9 rum og forbinder dem:
+    // Konstruktør: opretter de 9 rum, forbinder dem og lægger items i nogle af dem.
     public Map() {
         Room room1 = new Room("Room 1", "A plain room with only two doors ");
         Room room2 = new Room("Room 2", "An ordinary room with two doors ");
@@ -53,6 +53,20 @@ public class Map {  // Single Responsibility Principle: klassen har kun ét ansv
 
         room6.setSouth(room9);
         room9.setNorth(room6);
+
+
+        // Items i rummene
+        // Room 1 har 2 ting, Room 2 har 1 ting, Room 5 har 3 ting.
+        // De andre rum har ingen ting (så vi kan teste alle tilfælde: 0, 1, 2 og 3)
+        room1.addItem(new Item("lamp", "a shiny brass lamp"));
+        room1.addItem(new Item("coins", "some gold coins"));
+
+        room2.addItem(new Item("sword", "a rusty sword"));
+
+        room5.addItem(new Item("key", "a small golden key"));
+        room5.addItem(new Item("map", "an old torn map"));
+        room5.addItem(new Item("torch", "a burning torch"));
+
 
         // Spilleren starter i rum 1
         startRoom = room1;
