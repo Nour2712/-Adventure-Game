@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class UserInterface { // Userinterface står for al kommunikation med brugeren.
 
     // Userinterface kender kun Adventure (controlleren) - ikke Player, Map eller Room (lav kobling)
-    private Adventure adventure;
+    private final Adventure adventure;
 
     // Konstruktør: opretter spillet.
     public UserInterface() {
@@ -31,19 +31,17 @@ public class UserInterface { // Userinterface står for al kommunikation med bru
                     IO.println("Goodbye!");
                     playing = false;
                 }
-                case "look" -> {
-                    IO.println(adventure.look());//kalder look metoden fra vores adventure klasse
-                }
+                case "look" -> IO.println(adventure.look());//kalder look metoden fra vores adventure klasse
 
                 case "inventory", "inv", "invent" -> {
                     ArrayList<Item> inventory = adventure.getInventory();
 
-                    if (inventory.size() == 0) {
+                    if (inventory.isEmpty()) {
                         IO.println("You are not carrying anything");
                     } else {
                         IO.println("You are carrying:");
-                        for (int i = 0; i < inventory.size(); i++) {
-                            IO.println("- " + inventory.get(i).getLongName());
+                        for (Item item : inventory) {
+                            IO.println("- " + item.getLongName());
                         }
                     }
                 }
@@ -91,9 +89,9 @@ public class UserInterface { // Userinterface står for al kommunikation med bru
                     }
                 }
 
-                // "take" kan ikke være en almindelig case, fordi teksten er forskellig
+                // "Take" kan ikke være en almindelig case, fordi teksten er forskellig
                 // hver gang (take lamp, take sword...). Derfor tjekker vi med startsWith,
-                // og substring(5) klipper "take " af, så vi har navnet på tingen tilbage.
+                // og substring(5) klipper "take" af, så vi har navnet på tingen tilbage.
                 default -> {
                     if (kommando.startsWith("take ")) {
                         String itemName = kommando.substring(5);

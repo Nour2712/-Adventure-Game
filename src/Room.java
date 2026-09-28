@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Room {
 
     //opretter felter:
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
     private Room north;
     private Room east;
     private Room south;
@@ -12,7 +12,7 @@ public class Room {
 
     // Listen over de ting, der ligger i rummet.
     // Den oprettes tom med det samme, så den aldrig er null.
-    private ArrayList<Item> items = new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
 
 
     // Konstruktør: opretter et rum med navn og beskrivelse.
@@ -88,9 +88,9 @@ public class Room {
     // Leder efter en ting i rummet ud fra dens korte navn.
     // Returnerer tingen, hvis den findes, ellers null.
     public Item findItem(String shortName) {
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getShortName().equals(shortName)) {
-                return items.get(i);
+        for (Item item : items) {
+            if (item.getShortName().equals(shortName)) {
+                return item;
             }
         }
         return null;

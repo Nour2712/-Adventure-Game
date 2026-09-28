@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Adventure {
 
     // Spilleren, som holder styr på, hvor man er.
-    private Player player;
+    private final Player player;
 
     // Konstruktør: bygger kortet og placerer spilleren i startrummet.
     public Adventure() {

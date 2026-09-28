@@ -1,7 +1,7 @@
 public class Map {  // Single Responsibility Principle: klassen har kun ét ansvar som er  at bygge kortet.
 
     // Det rum spilleren starter i.
-    private Room startRoom;
+    private final Room startRoom;
 
     // Konstruktør: opretter de 9 rum, forbinder dem og lægger items i nogle af dem.
     public Map() {

@@ -9,7 +9,7 @@ public class Player {
 
 
     // Spillerens inventory: de ting, spilleren bærer rundt på.
-    private ArrayList<Item> inventory = new ArrayList<>();
+    private final ArrayList<Item> inventory = new ArrayList<>();
 
 
     // Konstruktør: spilleren får sit startrum med, når den bliver oprettet.
@@ -21,18 +21,18 @@ public class Player {
 
     // Returnerer navn og beskrivelse af rummet, plus de ting/ items der ligger i det.
     public String look() {
-        String text = currentRoom.getName() + "\n" + currentRoom.getDescription();
+        StringBuilder text = new StringBuilder(currentRoom.getName() + "\n" + currentRoom.getDescription());
         ArrayList<Item> items = currentRoom.getItems();
-        if (items.size() == 0) {
-            text = text + "\nThere is nothing here.";
+        if (items.isEmpty()) {
+            text.append("\nThere is nothing here.");
 
         } else {
-            text = text + "\nHere you see:";
-            for (int i = 0; i < items.size(); i++) {
-                text = text + "\n- " + items.get(i).getLongName();
+            text.append("\nHere you see:");
+            for (Item item : items) {
+                text.append("\n- ").append(item.getLongName());
             }
         }
-        return text;
+        return text.toString();
     }
 
 
