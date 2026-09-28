@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+
+public class Adventure {
+    private Map map;
+    private Player player;
+
+    public Adventure(){
+        this.map = new Map();
+        this.player = new Player(map.getStartRoom());
+    }
+
+    //Item metoder
+
+    public Item takeItem(String itemName){
+        return player.takeItem(itemName);
+    }
+
+    public Item dropItem(String itemName){
+        return player.dropItem(itemName);
+    }
+
+    public ArrayList<Item> getPlayerInventory(){
+        return player.getInventory();
+    }
+
+    public ArrayList<Item> getCurrentRoomItems(){
+        return player.getCurrentroom().getItems();
+    }
+
+    public String getCurrentRoomName(){
+        return player.getCurrentRoomName();
+    }
+
+    public String getCurrentRoomDescription(){
+        return player.getCurrentRoomDescription();
+    }
+
+    public boolean movePlayer(String direction){
+        return player.move(direction);
+    }
+
+}
