@@ -5,9 +5,8 @@ public class UserInterface { // Userinterface står for al kommunikation med bru
     // Userinterface kender kun Adventure (controlleren) - ikke Player, Map eller Room (lav kobling)
     private final Adventure adventure;
 
-    // Konstruktør: opretter spillet.
-    public UserInterface() {
-        adventure = new Adventure();
+    public UserInterface(Adventure adventure) {
+        this.adventure = adventure;
     }
 
 
